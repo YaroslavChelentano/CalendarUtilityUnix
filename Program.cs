@@ -71,6 +71,45 @@ namespace Calendar1
                 Console.WriteLine();
                 Console.WriteLine();
             }
+	public static void ShowYear(int yearnumber)
+        {
+            Calendar myCal = CultureInfo.InstalledUICulture.Calendar;
+            DateTime myDT = new DateTime(yearnumber, 1, 1, myCal);
+            Console.WriteLine($"       {yearnumber} ");
+            for (int i = 1; i < 13; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"       {(Months)i} ");
+                Console.WriteLine("Mo Tu We Th Fr Sa Su");
+                int month = myCal.GetMonth(myDT);
+                int j = Convert.ToInt32(myCal.GetDayOfWeek(myDT)) - 1;
+                for (int m = 0; m < j; m++)
+                {
+                    Console.Write("   ");
+                }
+                while (myCal.GetMonth(myDT) == month)
+                {
+                    if (j == -1)
+                    {
+                        j = 6;
+                        for (int m = 0; m < j; m++)
+                        {
+                            Console.Write("   ");
+                        }
+                    }
+                    if (j % 7 == 0)
+                    {
+                        Console.WriteLine();
+                    }
+                    string space = (myDT.Day.ToString().Length > 1) ? " " : "  ";
+                    Console.Write(myDT.Day + space);
+                    myDT = myDT.AddDays(1);
+                    j++;
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+        }
 	public static void Menu()
         {
 		
