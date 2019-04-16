@@ -1,2 +1,2 @@
 # CalendarUtilityUnix
-Task: Make command $cal in command line
+Task: Make utility $cal in command line Windows
