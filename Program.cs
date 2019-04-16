@@ -112,6 +112,21 @@ namespace Calendar1
         }
 	public static void Menu()
         {
+	    string date = Convert.ToString(DateTime.Now);
+            string[] arr = date.Split(new char[] { '.', ' ' });
+            int yearnow = Convert.ToInt32(arr[2]);
+            int monthnow = Convert.ToInt32(arr[1]);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            string action = Console.ReadLine();
+
+            string[] words = action.Split(new char[] { ' ' });
+
+            if (action == "$ cal")
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine($"       {yearnow} ");
+                ShowYearMonth(yearnow, monthnow);
+            }
 		
 	}
         static void Main(string[] args)
