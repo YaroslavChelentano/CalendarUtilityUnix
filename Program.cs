@@ -127,7 +127,37 @@ namespace Calendar1
                 Console.WriteLine($"       {yearnow} ");
                 ShowYearMonth(yearnow, monthnow);
             }
-		
+ 	   if (action == "$ cal --help")
+           {
+                Console.WriteLine("\n \n$ cal: Shows current month calendar on the terminal");
+                Console.WriteLine("$ cal [month] [year] : Shows calendar of selected month and year");
+                Console.WriteLine("$ cal [year] : Shows the whole calendar of the year");
+                Console.WriteLine("$ cal -3 : Shows calendar of previous, current and next month");
+            }
+            if (action == "$ cal -3")
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine($"       {yearnow} ");
+                ShowYearMonth(yearnow, monthnow-1);
+                ShowYearMonth(yearnow, monthnow);
+                ShowYearMonth(yearnow, monthnow+1);
+            }
+
+            if (action != "$ cal" && action != "$ cal --help" && action != "$ cal -3")
+            {
+                if (words.Length==3)
+                {
+                    int yearRead = Convert.ToInt32(words[2]);
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    ShowYear(yearRead);
+                }
+                if (words.Length==4)
+                {
+                    int yearRead = Convert.ToInt32(words[2]);
+                    int monthRead = Convert.ToInt32(words[3]);
+                    ShowYearMonth(yearRead, monthRead);
+                }
+	    }
 	}
         static void Main(string[] args)
         {
@@ -138,5 +168,6 @@ namespace Calendar1
             }
             Console.ReadLine();
         }
+    }
 }
 
