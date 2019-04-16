@@ -25,8 +25,55 @@ namespace Calendar1
             November = 11,
             December = 12
         }
+	    //вивід календаря з роком і місяцем
+        public static void ShowYearMonth(int yearnumber, int monthnumber)
+        {
+            Calendar myCal = CultureInfo.InstalledUICulture.Calendar;
+            DateTime myDT = new DateTime(yearnumber, monthnumber, 1, myCal);
+            
+            int i = monthnumber;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"       {(Months)i} ");
+            Console.WriteLine("Mo Tu We Th Fr Sa Su");
+            int month = myCal.GetMonth(myDT);
+            int j = Convert.ToInt32(myCal.GetDayOfWeek(myDT)) - 1 ;
+            for (int m = 0; m < j; m++)
+            { 
+		    Console.Write("   ");
+            }
+            while (myCal.GetMonth(myDT) == month)
+            {
+                if (j == -1)
+                {
+                    j = 6;
+                    for (int m = 0; m < j; m++)
+                    {
+                        Console.Write("   ");
+                    }
+                }
+                //if (j == -2)
+                //{
+                //    j = 5;
+                //    for (int m = 0; m < j; m++)
+                //    {
+                //        Console.Write("   ");
+                //    }
+                //}
+                if (j % 7 == 0)
+                {
+                    Console.WriteLine();
+                }
+                string space = (myDT.Day.ToString().Length > 1) ? " " : "  ";
+                Console.Write(myDT.Day + space);
+                myDT = myDT.AddDays(1);
+                j++;
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
 	public static void Menu()
         {
+		
 	}
         static void Main(string[] args)
         {
@@ -38,3 +85,4 @@ namespace Calendar1
             Console.ReadLine();
         }
 }
+
